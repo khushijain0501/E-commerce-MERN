@@ -22,7 +22,7 @@ const SaleProducts = () => {
         console.log(sliderRef)
     },[])
     useEffect(()=>{
-        axios.get("http://localhost:5000/products")
+        axios.get("http://localhost:5000/products/saleProdCaro")
         .then((res)=>{setData(res.data)})
         .catch(e=>{
             console.log("Error fetching products for all products carousal",error);
@@ -88,11 +88,11 @@ const SaleProducts = () => {
         <MdArrowRight size={32} className='p-0 m-0 buttons cursor-pointer'  onClick={() => sliderRef.current.slickNext()}/>
         </div>
     <div className=''>
-        {console.log(saleData)}
+        {console.log(data.length)}
         <Slider ref={sliderRef} {...settings} className='mx-4 '>
-            {saleData.map((prod,index)=>{
+            {data.map((prod,index)=>{
                 {console.log(images[index])}
-                return <SingleSaleProd key={prod.proId} prod={prod} prodImg={images[index]}/>
+                return <SingleSaleProd key={prod._id} prod={prod} prodImg={images[index]}/>
             })}
         </Slider>
       

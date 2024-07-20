@@ -38,8 +38,8 @@ const SingleSaleProd = ({prod,prodImg}) => {
       <div className='flex flex-col text-xs mt-2  font-semibold'>
         <div>{prod.title}</div>
         <div className='flex gap-2'>
-            <div className='text-[#7D8184] line-through'>₹{prod.proPriceOrig}</div>
-            <div className='text-[#DB4444] '>₹{prod.proPriceOrig*((100-parseInt(prod.discount))/100)}</div>
+            <div className='text-[#7D8184] line-through'>₹{prod.price}</div>
+            <div className='text-[#DB4444] '>₹{Math.round(prod.price*((100-parseInt(prod.discountPercentage))/100))}</div>
         </div>
         <div className='flex mt-1 items-center'>
         {stars.map((_,index)=>{
@@ -54,7 +54,7 @@ const SingleSaleProd = ({prod,prodImg}) => {
             )
 
         })}
-        <span className='ml-1 text-[#7D8184]'>( {prod.reviews} )</span>
+        {/* <span className='ml-1 text-[#7D8184]'>( {prod.reviews} )</span> */}
         </div>
       </div>
       </Link>

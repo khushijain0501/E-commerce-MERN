@@ -761,6 +761,84 @@
        ],
        "tags":["bestSellCaro"]
       
-  }
+  },
+  {
+    "id":1234,
+    "thumbnail":"client/src/assets/saleProd1.png",
+    "title":"SKMEI Men's Watch",
+    "price":6999,
+    "rating":4,
+    "description":"",
+    "discountPercentage":74,
+    "stock": 17,
+      "brand": "",
+      "category": "men's accessories",
+    "images":[""
+       ],
+       "tags":["saleProdCaro"]
+},
+{
+    "id":1235,
+    "thumbnail":"client/src/assets/saleProd2.jpg",
+    "title":"Fujifilm Instax Mini 11 Instant Camera",
+    "price":5999,
+   
+    "rating":4,
+    "discountPercentage":20,
+    "description":"",
+    "stock": 5,
+      "brand": "",
+      "category": "camera",
+    "images":[""
+       ],
+       "tags":["saleProdCaro"]
+},
+{
+    "id":1236,
+    "thumbnail":"../assets/saleProd3.jpg",        
+    "title":"LITTLE PUP Kids Speed-888 Ride-On 1 Jeep",
+    "price":12599,
+    "rating":3,
+    "discountPercentage":53,
+    "description":"",
+    "stock": 35,
+      "brand": "",
+      "category": "toys",
+    "images":[""
+       ],
+       "tags":["saleProdCaro"]
+},
+{
+
+    "id":1237,
+    "thumbnail":"../assets/saleProd4.webp",
+    "title":"LAKMÉ Lipstick Pink Charm",
+    "price":299,
+    "rating":4,
+    "discountPercentage":12,
+    "description":"",
+    "stock": 35,
+      "brand": "",
+      "category": "cosmetics",
+    "images":[""
+       ],
+       "tags":["saleProdCaro"]
+},
+{
+    "id":1238,
+    "thumbnail":"../assets/saleProd4.webp",
+    "title":"Lakme 9 To 5 CC Cream",
+    "price":369,
+    
+    "rating":4,
+    "discountPercentage":10,
+    "description":"",
+    "stock": 79,
+      "brand": "",
+      "category": "cosmetics",
+    "images":[""
+       ],
+       "tags":["saleProdCaro"]
+}
   ]
 

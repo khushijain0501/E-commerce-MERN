@@ -14,7 +14,7 @@ const SingleBestSell = ({ prod, prodImg }) => {
     on: "#FFAD33",
     off: "#7D8184",
   };
-  console.log(prodImg);
+  
   return (
     <>
       <div className="relative w-48 h-60 sm:w-52 md:w-48 lg:w-52 xl:mx-8 bg-[#F5F5F5] p-2 my-2 flex flex-col">
@@ -27,7 +27,7 @@ const SingleBestSell = ({ prod, prodImg }) => {
 
         <div className="group flex flex-col mt-6 justify-center items-center">
           {/* {console.log(`showImg ${showImg}`)} */}
-          
+          {/* {console.log(prod._id)} */}
           <Link
             to={ `/product/${prod._id}`} state= {{ id: prod._id } }
           >
