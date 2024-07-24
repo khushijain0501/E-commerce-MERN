@@ -41,7 +41,7 @@ const SingleBestSell = ({ prod, prodImg }) => {
                 />
               )}
               {showImg === "" && (
-                <img src={prodImg} alt={prod.thumbnail} className="w-30 h-28" />
+                <img src={prod.thumbnail} alt={prod.thumbnail} className="w-30 h-28" />
               )}
             </div>
           </Link>
@@ -78,7 +78,7 @@ const SingleBestSell = ({ prod, prodImg }) => {
                 return (
                   <div key={index}>
                     <FaStar
-                      color={prod.rating > index ? colors.on : colors.off}
+                      color={Math.floor(prod.rating) > index ? colors.on : colors.off}
                     />
                   </div>
                 );

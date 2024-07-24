@@ -15,7 +15,7 @@ import "../assets/saleProd1.png"
 import axios from 'axios';
 
 const SaleProducts = () => {
-    const images=[saleProd1,saleProd2,saleProd3,saleProd4,saleProd5]
+    const images=[saleProd2,saleProd4,saleProd1,saleProd3,saleProd5]
     const sliderRef=useRef(null);
     const [data,setData]=useState([])
     useEffect(()=>{

@@ -1,6 +1,6 @@
 import React from 'react'
 import OurProductsSlider from './OurProductsSlider'
-
+import { Link } from "react-router-dom";
 
 const OurProducts = () => {
   return (
@@ -17,9 +17,11 @@ const OurProducts = () => {
       </div>
       <OurProductsSlider/>
       <div className='flex justify-center mt-10'>
+        <Link to="/allProducts" state={{caller:"allProd"}}>
     <button className='bg-[#DB4444] p-2 text-white rounded-md px-8'>
         View All Products
     </button>
+    </Link>
     </div>
     </div>
     </div>

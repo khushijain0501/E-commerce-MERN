@@ -20,7 +20,7 @@ const SingleSaleProd = ({prod,prodImg}) => {
   return (
     <div className='relative w-48 h-60 sm:w-52 md:w-48 lg:w-52 xl:mx-8 bg-[#F5F5F5] p-2 my-2 flex flex-col'>
       <div className='flex justify-between my-2'>
-        <div className='p-1 absolute left-0 text-white text-xs bg-[#DB4444] ml-2 rounded-sm'>-{prod.discount}</div>
+        <div className='p-1 absolute left-0 text-white text-xs bg-[#DB4444] ml-2 rounded-sm'>-{prod.discountPercentage}%</div>
         <IoMdHeartEmpty size={20} className='cursor-pointer absolute right-0 mr-2 '/>
       </div>
       

@@ -1,6 +1,7 @@
 import {React,useState} from 'react'
 import Countdown from './Countdown'
 import SaleProducts from './SaleProducts'
+import { Link } from 'react-router-dom';
 
 const TodaysSection = () => {
   const [countdownType,setcountdownType]=useState("todays");
@@ -18,9 +19,11 @@ const TodaysSection = () => {
     </div>
     <SaleProducts/>
     <div className='flex justify-center mt-10'>
+      <Link to="/allProducts" state={{caller:"saleProdCaro"}}>
     <button className='bg-[#DB4444] p-2 text-white rounded-md px-8'>
         View All Products
     </button>
+    </Link>
     </div>
     </div>
   )

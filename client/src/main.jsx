@@ -6,6 +6,7 @@ import './index.css'
 import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
+import AllProducts from './pages/AllProducts.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Route path="/SignUp" element={<SignUp/>}/>
   <Route path="/Login" element={<Login/>}/>
   <Route path='/product/:id' element={<ProductDetail/>}/>
+  <Route path="/allProducts" element={<AllProducts/>}/>
   </Routes>
   </BrowserRouter>
 )
