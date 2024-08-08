@@ -7,13 +7,22 @@ import Footer from "../components/Footer";
 import {ToastContainer,toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useDispatch,useSelector } from "react-redux";
+import { setCredentials } from "../redux/slices/authSlice";
+import { setCart } from "../redux/slices/cartSlice";
+// import { setCredentials } from "../redux/slices/authSlice";
+// import { setCredentials } from "../redux/slices/authSlice";
 
 const Login = () => {
     const [input,setInput]=useState({
       email:"",
       password:"",
     })
+    const {userInfo}=useSelector(state=>state.auth)
+    console.log(userInfo)
+    // const [name,setName]=useState("")
     const navigate=useNavigate();
+    const dispatch1=useDispatch();
     const {email,password}=input;
     const handleChange=(e)=>{
       const {name,value}=e.target;
@@ -35,23 +44,56 @@ const Login = () => {
     
     const handleSubmit = async(e)=>{
       e.preventDefault();
+      // dispatch(setCredentials({email:email}))
       try{
-        const {data}=await axios.post("http://localhost:5000/login",{
+        const response=await axios.post("http://localhost:5000/login",{
           ...input,
         },{withCredentials:true}
       );
-      console.log(data);
-      const {success,message}=data;
+      // console.log(response.data);
+      // setName(data.name)
+      // const {user}=data
+      if(response && response.data){
+      const {user,success,message}=response.data;
       if(success){
         handleSuccess(message);
+        navigate("/")
+        // console.log(data.name)
+        console.log(user)
+        dispatch1(setCredentials({...user}))
+        try{
+        const cartResponse=await axios.get("http://localhost:5000/getCart",{params:{userId:user._id},withCredentials:true})
+        .then(()=>{
+          console.log("Cart value fetched successfully")
+        })
+        .catch((err)=>{
+          console.log("Error fetching cart",err)
+        });
+        if(cartResponse && cartResponse.data){
+        const {cartItems}=cartResponse.data;
+        dispatch1(setCart(cartItems));
+        localStorage.setItem('cartItems',JSON.stringify(cartItems))
+        console.log(JSON.stringify(cartItems))
+        }
+        else
+        console.error("Cart response is undefined or malformed")
+      }
+    catch(cartError){
+      console.log("error fetching cart",cartError);
+    }
         setTimeout(()=>{
           navigate("/");
         },1000);
       }
+    
       else{
         handleError(message);
       }
       }
+      else {
+        handleError("Unexpected error occurred. Please try again.");
+      }
+    }
       catch(err){
       console.log(err);
       }
@@ -63,11 +105,14 @@ const Login = () => {
     };
 
     const [image,setImage]=useState(image1);
-useEffect(()=>{
-    const interval=setInterval(()=>{
-        setImage(prevImage => prevImage === image1 ? image2 : image1);
-    return ()=>clearInterval(interval);
-},1000)},[])
+
+    //commented out beacuse was causing too many re renders
+// useEffect(()=>{
+//     const interval=setInterval(()=>{
+//         setImage(prevImage => prevImage === image1 ? image2 : image1);
+//       },1000)
+//     return ()=>clearInterval(interval);
+// },[])
   
   return (
     <div className="overflow-y-hidden">

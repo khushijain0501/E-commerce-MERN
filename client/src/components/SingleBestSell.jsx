@@ -6,9 +6,12 @@ import allProd7a from "../assets/allProd7a.webp";
 import allProd7b from "../assets/allProd7b.jpg";
 import allProd7c from "../assets/allProd7c.jpg";
 import { Link } from "react-router-dom";
+import { addItem } from '../redux/slices/cartSlice';
+import {useDispatch} from 'react-redux'
 
 const SingleBestSell = ({ prod, prodImg }) => {
   const stars = Array(5).fill(0);
+  const dispatch=useDispatch();
   const [showImg, setShowImg] = useState("");
   const colors = {
     on: "#FFAD33",
@@ -31,7 +34,7 @@ const SingleBestSell = ({ prod, prodImg }) => {
           <Link
             to={ `/product/${prod._id}`} state= {{ id: prod._id } }
           >
-            {console.log(prod._id)}
+            {/* {console.log(prod._id)} */}
             <div>
               {showImg !== "" && (
                 <img
@@ -45,7 +48,9 @@ const SingleBestSell = ({ prod, prodImg }) => {
               )}
             </div>
           </Link>
-          <div className="invisible py-0.5 group-hover:cursor-pointer bg-black text-white w-full text-center text-xs group-hover:visible">
+          <div
+          onClick={()=>dispatch(addItem({prod}))}
+           className="invisible py-0.5 group-hover:cursor-pointer bg-black text-white w-full text-center text-xs group-hover:visible">
             Add to Cart
           </div>
         </div>
@@ -53,7 +58,7 @@ const SingleBestSell = ({ prod, prodImg }) => {
           <div className="flex flex-col text-xs mt-2  font-semibold">
             <div>{prod.title}</div>
             <div className="flex gap-2">
-              <div className="text-[#DB4444]">₹{prod.price}</div>
+              <div className="text-[#DB4444]">₹{Math.round(prod.price * 83)}</div>
             </div>
             {prod.colors && (
               <div className="flex gap-1">

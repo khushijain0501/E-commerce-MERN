@@ -7,7 +7,8 @@ import saleProd4 from '../assets/saleProd4.webp'
 import saleProd5 from "../assets/saleProd5.webp"
 import { FaStar } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-
+import { addItem } from '../redux/slices/cartSlice';
+import {useDispatch} from 'react-redux'
 
 const SingleSaleProd = ({prod,prodImg}) => {
     const stars=Array(5).fill(0);
@@ -15,7 +16,8 @@ const SingleSaleProd = ({prod,prodImg}) => {
         on:"#FFAD33",
         off:"#7D8184",
     }
-    console.log(prodImg)
+    const dispatch=useDispatch();
+    // console.log(prodImg)
     
   return (
     <div className='relative w-48 h-60 sm:w-52 md:w-48 lg:w-52 xl:mx-8 bg-[#F5F5F5] p-2 my-2 flex flex-col'>
@@ -26,25 +28,27 @@ const SingleSaleProd = ({prod,prodImg}) => {
       
       <div className='group flex flex-col mt-6 justify-center items-center'>
         {/*console.log(`../assets/saleProd${prod.thumbnail}.png`)*/}
-        {console.log(prod._id)}
+        {/* {console.log(prod._id)} */}
         <div>
           <Link to={ `/product/${prod._id}`} state= {{ id: prod._id } }>
-        <img src={prodImg} alt={prod.thumbnail} className='w-24 h-24'/>
+        <img src={prod.thumbnail} alt={prod.thumbnail} className='w-24 h-24'/>
         </Link>
         </div>
-        <div className='invisible py-0.5 group-hover:cursor-pointer bg-black text-white w-full text-center text-xs group-hover:visible'>Add to Cart</div>
+        <div 
+        onClick={()=>dispatch(addItem({prod}))}
+        className='invisible py-0.5 group-hover:cursor-pointer bg-black text-white w-full text-center text-xs group-hover:visible'>Add to Cart</div>
       </div>
       <Link to={ `/product/${prod._id}`} state= {{ id: prod._id } }>
       <div className='flex flex-col text-xs mt-2  font-semibold'>
         <div>{prod.title}</div>
         <div className='flex gap-2'>
-            <div className='text-[#7D8184] line-through'>₹{prod.price}</div>
-            <div className='text-[#DB4444] '>₹{Math.round(prod.price*((100-parseInt(prod.discountPercentage))/100))}</div>
+            <div className='text-[#7D8184] line-through'>₹{Math.round(prod.price*83)}</div>
+            <div className='text-[#DB4444] '>₹{Math.round(prod.price*83*((100-parseInt(prod.discountPercentage))/100))}</div>
         </div>
         <div className='flex mt-1 items-center'>
         {stars.map((_,index)=>{
-          console.log(prod.rating)
-          console.log(index)
+          // console.log(prod.rating)
+          // console.log(index)
             return (
                 <div key={index}>
                 <FaStar 

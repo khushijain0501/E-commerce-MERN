@@ -11,7 +11,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 
 const SingleCategory = ({category}) => {
     const Icon=category.icon
-    console.log(Icon)
+    // console.log(Icon)
   return (
     <div className='flex flex-col gap-2 justify-center items-center w-24 h-24 xl:w-36 xl:h-36 border-2 rounded-md border-[#7D8184] hover:bg-[#DB4444] hover:border-none hover:text-white'>
       <div className=''>{category.icon}</div>

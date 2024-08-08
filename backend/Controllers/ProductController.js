@@ -30,8 +30,18 @@ exports.fetchAllProducts= async(req,res)=>{
 }
 exports.fetchCarousalProducts= async(req,res)=>{
     try{
-        //console.log(req.params.tag)
-        const products=await ProductModel.find({tags:req.params.tag});
+        // console.log(req.params.tag)
+        const tag=req.params.tag;
+        let products=[]
+        if(tag=="bestSellCaro"){
+        products=await ProductModel.find({rating:{$gt:4}}).limit(10);
+        }
+        if(tag=="saleProdCaro"){
+            products=await ProductModel.find({discountPercentage:{$gt:15}}).limit(10);
+        }
+        if(tag=="allProdCaro"){
+            products=await ProductModel.find({discountPercentage:{$lt:1}}).limit(10);
+        }
         //return products;
         res.status(200).json(products);
     }

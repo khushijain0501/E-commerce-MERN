@@ -19,7 +19,7 @@ const SaleProducts = () => {
     const sliderRef=useRef(null);
     const [data,setData]=useState([])
     useEffect(()=>{
-        console.log(sliderRef)
+        // console.log(sliderRef)
     },[])
     useEffect(()=>{
         axios.get("http://localhost:5000/products/saleProdCaro")
@@ -88,10 +88,10 @@ const SaleProducts = () => {
         <MdArrowRight size={32} className='p-0 m-0 buttons cursor-pointer'  onClick={() => sliderRef.current.slickNext()}/>
         </div>
     <div className=''>
-        {console.log(data.length)}
+        {/* {console.log(data.length)} */}
         <Slider ref={sliderRef} {...settings} className='mx-4 '>
             {data.map((prod,index)=>{
-                {console.log(images[index])}
+                // {console.log(images[index])}
                 return <SingleSaleProd key={prod._id} prod={prod} prodImg={images[index]}/>
             })}
         </Slider>

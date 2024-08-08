@@ -15,6 +15,14 @@ const userSchema=new mongoose.Schema({
         type:String,
         required: [true, "Your password is required"],
     },
+    cart:{
+        type:Array,
+        default:[]
+    },
+    avatar:{
+        type:String,
+        default:"",
+    },
     createdAt: {
         type: Date,
         default: new Date(),

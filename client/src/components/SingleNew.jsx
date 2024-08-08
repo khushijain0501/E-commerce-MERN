@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SingleNew = ({prod,prodImg,small}) => {
-  {console.log(small)}
+  // {console.log(small)}
   return (
     <div className='relative bg-black w-full h-full'>
         <div className='absolute bottom-0 right-0 w-full flex justify-end'>

@@ -12,7 +12,7 @@ const SideBar = () => {
     }));
   };
   const [textColor,setTextColor]=useState("black")
-  console.log(categories);
+  // console.log(categories);
   return (
     <div className="ml-2 p-2 mt-10 xl:mt-14 border-r-[1px] border-[#D3D3D3] ">
       <ul className="leading-8">
@@ -28,8 +28,8 @@ const SideBar = () => {
                 />
               )}
               </li>
-              {console.log(category.subCategory)}
-              {console.log(showSubCat[index])}
+              {/* {console.log(category.subCategory)}
+              {console.log(showSubCat[index])} */}
               
               {showSubCat[index] && category.subCategory && category.subCategory.length > 0 && 
               (<ul className="pl-4">

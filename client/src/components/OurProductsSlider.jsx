@@ -22,7 +22,7 @@ const OurProductsSlider = () => {
     const [products,setProducts]=useState([]);
     const sliderRef=useRef(null);
     useEffect(()=>{
-        console.log(sliderRef)
+        // console.log(sliderRef)
     },[])
     const settings={
         dots:true,
@@ -94,11 +94,11 @@ const OurProductsSlider = () => {
         <MdArrowRight size={32} className='p-0 m-0 buttons cursor-pointer'  onClick={() => sliderRef.current.slickNext()}/>
         </div>
     <div className=''>
-        {console.log(products)}
+        {/* {console.log(products)} */}
         
         <Slider ref={sliderRef} {...settings} className='mx-4 '>
             {products.map((prod,index)=>{
-                {console.log(images[index])}
+                // {console.log(images[index])}
                 return <SingleBestSell key={prod.id} prod={prod} prodImg={images[index]}  />
             })}
         </Slider>

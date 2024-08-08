@@ -7,9 +7,13 @@ import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import AllProducts from './pages/AllProducts.jsx'
+import Cart from './pages/Cart.jsx'
+import {Provider} from "react-redux"
+import {store} from "./redux/store.js"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+ <Provider store={store}>
+ <BrowserRouter>
   <Routes>
   <Route path="/" element={<React.StrictMode>
     <App />
@@ -18,6 +22,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Route path="/Login" element={<Login/>}/>
   <Route path='/product/:id' element={<ProductDetail/>}/>
   <Route path="/allProducts" element={<AllProducts/>}/>
+  <Route path='/cart' element={<Cart/>}/>
   </Routes>
   </BrowserRouter>
+  </Provider>
 )

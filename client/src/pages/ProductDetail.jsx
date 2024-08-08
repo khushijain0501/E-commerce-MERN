@@ -15,10 +15,14 @@ import bestSell3 from "../assets/bestSell3.jpg";
 import bestSell4 from "../assets/bestSell4.jpg";
 import bestSell5 from "../assets/bestSell5.jpg";
 import PincodeChecker from "../components/PincodeChecker";
+import { useDispatch, useSelector } from "react-redux";
+import {addItem} from "../redux/slices/cartSlice"
 
 const ProductDetail = () => {
   const location = useLocation();
   const id = location.state.id;
+  const dispatch=useDispatch()
+  const {cartItems} =useSelector(state=>state.cart)
   const [prod, setProd] = useState({});
   const stars = Array(5).fill(0);
   const colors = {
@@ -27,6 +31,7 @@ const ProductDetail = () => {
   };
   const [quantity, setQuantity] = useState(1);
   const [checkPin,setCheckPin]=useState(false);
+  const [currImg,setCurrImg]=useState("")
   console.log(id);
   useEffect(() => {
     axios
@@ -38,7 +43,9 @@ const ProductDetail = () => {
         console.log("Error fetching product detail");
       });
   }, [id]);
-  console.log(prod);
+  console.log(prod.images);
+  const images=prod.images || [];
+  console.log(images)
   return (
     <div>
       <Navbar showButton={true} />
@@ -52,11 +59,27 @@ const ProductDetail = () => {
           </span>
           <span className="text-black cursor-pointer">{prod.title}</span>
         </div>
-        <div className="flex w-full gap-8 p-10 justify-between align-center ">
-          <div className="w-1/2 ">
-            <img src={prod.thumbnail} alt="thumbnail" />
+        <div className="flex flex-col md:flex-row w-full gap-8 p-10 justify-between align-center ">
+          <div className="w-full md:w-[60%]">
+            {images.length>1 && (<div className="w-full flex flex-col md:flex-row">
+              <div className="w-full md:w-[30%] flex md:flex-col justify-center items-center">
+              {console.log(prod)}
+              {images && (images).map((image,index)=> {
+                return (<img src={image} key={index} onClick={()=>setCurrImg(image)} className="h-[120px] hover:bg-gray-100"/>);
+                
+              })}
+            </div>
+            <div className="md:w-[70%] flex justify-center items-center">
+            <img src={currImg!==""?currImg:prod.thumbnail} alt="thumbnail" />
+            </div>
+            </div>)}
+            {images.length<=1 && 
+            (<div className="w-full flex justify-center items-center">
+            <img src={prod.thumbnail} alt="thumbnail" className="pt-10" />
+            </div>)}
+          
           </div>
-          <div className="w-1/2 flex flex-col gap-2 ">
+          <div className="md:w-1/2 flex flex-col gap-2 ">
             <div className="font-semibold text-xl">{prod.title}</div>
             <div className="flex mt-1 items-center">
               {stars.map((_, index) => {
@@ -70,7 +93,7 @@ const ProductDetail = () => {
               })}
             </div>
             <div>{prod.description}</div>
-            <div>Rs {prod.price}</div>
+            <div className="font-semibold">₹ {Math.round(prod.price*83)}</div>
             <div className="flex items-center gap-4 mb-4">
               <div className="flex items-center w-[100px]">
                 <IoMdAdd
@@ -91,7 +114,14 @@ const ProductDetail = () => {
               </div>
             </div>
             <div className="flex items-center gap-4 lg:w-3/4 xl:w-1/2">
-              <button className="rounded-sm bg-[#DB4444] text-white p-2 px-3 text-xs w-[70%]">
+              <button 
+              className="rounded-sm bg-[#DB4444] text-white p-2 px-3 text-xs w-[70%] cursor-pointer"
+              onClick={(e)=>{
+                for (let i=0;i<quantity;i++)
+                dispatch(addItem({prod})) 
+            }}
+              >
+                
                 Add To Cart
               </button>
               <CiHeart size={30} />
