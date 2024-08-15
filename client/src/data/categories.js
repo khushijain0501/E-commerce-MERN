@@ -116,3 +116,19 @@ const categories = [
 ];
 
 export default categories;
+
+// Atlas atlas-zmor29-shard-0 [primary] test> db.products.distinct("category")
+// [
+//   'beauty',             'fragrances',
+//   'furniture',          'groceries',
+//   'home-decoration',    'kitchen-accessories',
+//   'laptops',            'mens-shirts',
+//   'mens-shoes',         'mens-watches',
+//   'mobile-accessories', 'motorcycle',
+//   'skin-care',          'smartphones',
+//   'sports-accessories', 'sunglasses',
+//   'tablets',            'tops',
+//   'vehicle',            'womens-bags',
+//   'womens-dresses',     'womens-jewellery',
+//   'womens-shoes',       'womens-watches'
+// ]

@@ -13,25 +13,40 @@ import { IoLogoGameControllerB } from "react-icons/io";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { MdArrowRight } from "react-icons/md";
 import { MdArrowLeft } from "react-icons/md";
+import { GiRunningShoe } from "react-icons/gi";
+import { BsSunglasses } from "react-icons/bs";
+import { FaBagShopping } from "react-icons/fa6";
+import { GiLargeDress } from "react-icons/gi";
+import { MdOutlineSportsTennis } from "react-icons/md";
+
+
 
 const CategorySlider = () => {
     const categories=[
         {name:"Phones",
+        tag:["smartphones"],
         icon:<FaMobileAlt className="w-8 h-6 xl:h-8 xl:w-10 "/> },
-        {name:"Computers",
+        {name:"Laptop",
+        tag:["laptops"],
         icon:<MdComputer className="w-8 h-6 xl:h-10 xl:w-10"/>},
-        {name:"SmartWatch",
+        {name:"Watch",
+        tag:["mens-watches",'womens-watches'],
         icon:<BsSmartwatch className="w-8 h-6 xl:h-14"/>},
-        {name:"Camera",
-        icon:<FaCamera className="w-8 h-6 xl:h-14"/>},
-        {name:"Headphones",
-        icon:<ImHeadphones className="w-8 h-6 xl:h-14"/>},
-        {name:"Gaming",
-        icon:<IoLogoGameControllerB className="w-8 h-6 xl:h-14"/>},
-        {name:"Television",
-        icon:<PiTelevisionSimpleBold className="w-8 h-6 xl:h-14"/>},
-        {name:"Speakers",
-        icon:<MdSpeaker className="w-8 h-6 xl:h-14"/>}
+        {name:"Shoes",
+            tag:["mens-shoes","womens-shoes"],
+        icon:<GiRunningShoe className="w-9 h-7 xl:h-14"/>},
+        {name:"Sunglasses",
+            tag:["sunglasses"],
+        icon:<BsSunglasses className="w-9 h-7 xl:h-14"/>},
+        {name:"Sports",
+            tag:["sports-accessories"],
+        icon:<MdOutlineSportsTennis className="w-9 h-6 xl:h-14"/>},
+        {name:"Bags",
+            tag:["womens-bags"],
+        icon:<FaBagShopping className="w-8 h-6 xl:h-14"/>},
+        {name:"Women's Dresses",
+            tag:["womens-dresses"],
+        icon:<GiLargeDress className="w-8 h-6 xl:h-14"/>}
     ]
     const settings={
         dots:true,

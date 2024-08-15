@@ -85,7 +85,7 @@ const Cart = () => {
                     className="border-[1px] border-[#A9A9A9] p-1 rounded-[50%]"
                     // onClick={() => setQuantity((prev) => prev + 1)}
                     onClick={
-                      ()=>handleIncrease(prod.id)
+                      ()=>handleIncrease(prod._id)
                       }
                   />
                   <div className="text-center font-semibold text-sm md:text-xs lg:text-sm p-1 px-2">

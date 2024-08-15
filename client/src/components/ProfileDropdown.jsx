@@ -26,12 +26,14 @@ const ProfileDropdown = ({handleMouseEnter,handleMouseLeave,setShowDropdown,logo
                 <p>New User?</p>
                 <Link to="/SignUp" className='text-[#DB4444]'>Sign Up</Link>
             </div>}
-            {userInfo && <p>Hello <span className='text-[#DB4444]'>{userInfo.user.name}</span>!</p>}
+            {userInfo && <p>Hello <span className='text-[#DB4444]'>{userInfo.name}</span>!</p>}
         </li>
         <li className='hover:bg-gray-100 p-1'>
             <div className='flex items-center gap-1 my-1'>
             <FaUserCircle size={20}/>
+            <Link to="/profile">
             <p>Your Profile</p>
+            </Link>
             </div>
         </li>
         <li className='hover:bg-gray-100 p-1'>

@@ -63,12 +63,13 @@ const Login = () => {
         dispatch1(setCredentials({...user}))
         try{
         const cartResponse=await axios.get("http://localhost:5000/getCart",{params:{userId:user._id},withCredentials:true})
-        .then(()=>{
-          console.log("Cart value fetched successfully")
-        })
-        .catch((err)=>{
-          console.log("Error fetching cart",err)
-        });
+        // .then(()=>{
+        //   console.log("Cart value fetched successfully")
+        // })
+        // .catch((err)=>{
+        //   console.log("Error fetching cart",err)
+        // });
+        console.log(JSON.stringify(cartResponse.data))
         if(cartResponse && cartResponse.data){
         const {cartItems}=cartResponse.data;
         dispatch1(setCart(cartItems));

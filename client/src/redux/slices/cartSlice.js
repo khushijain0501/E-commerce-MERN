@@ -42,16 +42,19 @@ const cartSlice=createSlice({
             
         },
         increaseQuantity:(state,action)=>{
-            const item=state.cartItems.find(i=>i._id===action.payload._id);
+            console.log(JSON.stringify(state.cartItems))
+            console.log(action.payload)
+            const item=state.cartItems.find(i=>i.prod.prod._id===action.payload.id);
+            console.log(item)
             if(item)
                 item.quantity+=1;
         },
         decreaseQuantity:(state,action)=>{
-            const item=state.cartItems.find(i=>i._id===action.payload._id);
+            const item=state.cartItems.find(i=>i.prod.prod._id===action.payload.id);
             if(item && item.quantity>1)
                 item.quantity-=1;
             else
-            state.cartItems=state.cartItems.filter(i=>i._id!==action.payload._id)
+            state.cartItems=state.cartItems.filter(i=>i.prod.prod._id!==action.payload.id)
         },
         removeItem:(state,action)=>{
             console.log(JSON.stringify(state.cartItems))

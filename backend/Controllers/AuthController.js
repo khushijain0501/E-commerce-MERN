@@ -56,16 +56,19 @@ module.exports.Login=async (req,res,next)=>{
 
 module.exports.SaveCart=async (req,res)=>{
     console.log("in save cart")
-    const {cartItems,userInfo}=req.body;
+    const {cartVal,userInfo}=req.body;
     // const {userInfo}=req.body.userInfo
     // const userId=req.user._id;
-    console.log(cartItems)
+    console.log(cartVal)
     console.log(userInfo)
     try{
         // if (!userInfo || !userInfo._id) {
         //     throw new Error("User ID is missing");
         // }
-        const result=await User.findByIdAndUpdate(userInfo.user._id,{cart:cartItems},{new:true});
+        if (!Array.isArray(cartVal)) {
+            throw new Error("cartVal should be an array");
+        }
+        const result=await User.findByIdAndUpdate(userInfo.user._id,{ $push: { cart: { $each: cartVal } } },{new:true});
         if(!result)
             throw new Error("User not found or update failed")
         console.log("Updated",result)
@@ -78,12 +81,14 @@ module.exports.SaveCart=async (req,res)=>{
 };
 module.exports.GetCart=async (req,res)=>{
     const userId=req.query.userId;
+    console.log(userId)
     try{
         const user=await User.findById(userId);
+        console.log(user.cart)
         if(!user){
             return res.status(404).send({ success: false, message: 'User not found' });
         }
-        res.status(200).send({cartItems:user.cart});
+        res.status(200).json({cartItems:user.cart});
     }
     catch(err){
         console.log("error fetching the cart",err);

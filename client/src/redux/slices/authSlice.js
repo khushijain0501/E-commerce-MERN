@@ -14,6 +14,12 @@ const authSlice=createSlice({
             // console.log(action.payload.user)
             localStorage.setItem('userInfo',JSON.stringify(action.payload));
         },
+        // setProfileImg: (state, action) => {
+        //     if (state.userInfo) {
+        //       state.userInfo.profileImg = action.payload;
+        //       localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+        //     }
+        //   },
         logout: (state, action) => {
             state.userInfo = null;
             localStorage.removeItem('userInfo');

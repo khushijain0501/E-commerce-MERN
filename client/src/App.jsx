@@ -92,9 +92,11 @@ function App() {
     dispatch(logout())
     navigate("/")
     // const {cartItems}= useSelector(state=>state.cart)
-    const cartVal=localStorage.getItem('cartItems')
+    // const cartVal=localStorage.getItem('cartItems')
+    const cartVal = cartItems.length ? cartItems : JSON.parse(localStorage.getItem('cartItems')) || [];
     // const cartVal=cartItems
     console.log(`Cart before ${cartVal}`)
+    // console.log(userInfo)
     try{
     const response=await axios.post("http://localhost:5000/saveCart",{cartVal,userInfo},{withCredentials:true});
     if (response.data.success) {
