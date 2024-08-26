@@ -56,7 +56,7 @@ const MyProfile = () => {
       catch{
         console.log("error")
       }
-      setEdit(false)
+      // setEdit(false)
   };
 
   const handleAddAddress=()=>{
@@ -227,7 +227,7 @@ const MyProfile = () => {
                 )
             }
                 {edit?(<div className="flex justify-center">
-                    <button type="submit" className="bg-[#DB4444] text-white p-2 rounded-md">
+                    <button type="submit" onClick={()=>setEdit(false)} className="bg-[#DB4444] text-white p-2 rounded-md">
                         Save Changes
                     </button>
                 </div>):
