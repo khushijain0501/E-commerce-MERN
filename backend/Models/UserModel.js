@@ -6,6 +6,12 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:[true,"Your name is required"],
     },
+    firstName:{
+        type:String,
+    },
+    lastName:{
+        type:String,
+    },
     email:{
         type:String,
         required:[true,"Your email address is required"],
@@ -14,6 +20,13 @@ const userSchema=new mongoose.Schema({
     password:{
         type:String,
         required: [true, "Your password is required"],
+    },
+    mobile:{
+        type:String,
+    },
+    address:{
+        type:Array,
+        default:[]
     },
     cart:{
         type:Array,

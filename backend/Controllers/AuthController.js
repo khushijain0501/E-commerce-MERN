@@ -95,3 +95,31 @@ module.exports.GetCart=async (req,res)=>{
         res.status(500).send({success:false,message:"Error fetching cart"});
     }
 }
+module.exports.SaveProfileInfo=async (req,res)=>{
+    const {userInfo}=req.body;
+    const {user}=userInfo
+    console.log(user)
+    try{
+    const updatedUser= await User.findByIdAndUpdate(user._id,
+        {
+            $set:
+            { 
+                firstName: user.firstName,
+                lastName: user.lastName,
+                mobile: user.phone,
+                address: user.address, // Assuming address is an array of objects with address, city, and state
+                avatar: user.avatar,
+            }
+        },
+        {new:true}
+    );
+    if(!updatedUser){
+        return res.status(404).json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, user: updatedUser});
+}
+catch (err) {
+    console.log("Error saving profile info", err);
+    res.status(500).json({ success: false, message: "Error saving profile info" });
+}
+}
