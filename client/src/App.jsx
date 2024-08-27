@@ -93,12 +93,13 @@ function App() {
     navigate("/")
     // const {cartItems}= useSelector(state=>state.cart)
     // const cartVal=localStorage.getItem('cartItems')
+    const userId=userInfo?.user?._id || userInfo?._id
     const cartVal = cartItems.length ? cartItems : JSON.parse(localStorage.getItem('cartItems')) || [];
     // const cartVal=cartItems
     console.log(`Cart before ${cartVal}`)
     // console.log(userInfo)
     try{
-    const response=await axios.post("http://localhost:5000/saveCart",{cartVal,userInfo},{withCredentials:true});
+    const response=await axios.post("http://localhost:5000/saveCart",{cartVal,userInfo:{user:{_id:userId}}},{withCredentials:true});
     if (response.data.success) {
       console.log("Cart saved successfully");
     } else {

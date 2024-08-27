@@ -60,7 +60,7 @@ module.exports.SaveCart=async (req,res)=>{
     // const {userInfo}=req.body.userInfo
     // const userId=req.user._id;
     console.log(cartVal)
-    console.log(userInfo)
+    // console.log(userInfo.user._id)
     try{
         // if (!userInfo || !userInfo._id) {
         //     throw new Error("User ID is missing");
