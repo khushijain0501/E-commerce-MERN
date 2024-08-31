@@ -74,7 +74,7 @@ const Login = () => {
         const {cartItems}=cartResponse.data;
         dispatch1(setCart(cartItems));
         localStorage.setItem('cartItems',JSON.stringify(cartItems))
-        console.log(JSON.stringify(cartItems))
+        console.log(JSON.stringify(cartItems).length)
         }
         else
         console.error("Cart response is undefined or malformed")

@@ -11,6 +11,7 @@ import Cart from './pages/Cart.jsx'
 import {Provider} from "react-redux"
 import {store} from "./redux/store.js"
 import MyProfile from './pages/MyProfile.jsx'
+import Checkout from './pages/Checkout.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
  <Provider store={store}>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Route path="/allProducts" element={<AllProducts/>}/>
   <Route path='/cart' element={<Cart/>}/>
   <Route path="/profile" element={<MyProfile/>}/>
+  <Route path="/checkout" element={<Checkout/>}/>
   </Routes>
   </BrowserRouter>
   </Provider>
