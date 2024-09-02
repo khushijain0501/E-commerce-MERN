@@ -9,18 +9,39 @@ import CheckoutCustomerInfo from "../components/CheckoutCustomerInfo";
 import CheckoutDeliveryAddress from "../components/CheckoutDeliveryAddress";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaCircleArrowLeft } from "react-icons/fa6";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Checkout = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
   const addresses = userInfo.user.address;
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const handleAddAddress = (e) => {};
+  
+  // const handleAddAddress = (e) => {};
   const steps=["Customer Info","Delivery Address","Payment"]
   const [currentStep,setCurrentStep]=useState(1)
-  // console.log(userInfo)
+  const [prevStatus,setPrevStatus]=useState(false)
+  console.log(userInfo)
   console.log(addresses);
+
+  const handleNextStep=()=>{
+    if(!prevStatus){
+      // console.log("Please save the details before proceeding!")
+      toast.warn("Please save the details before proceeding!",{
+        position:"top-right",
+        autoClose:3000,
+        hideProgressBar:false,
+        closeOnClick:true,
+        pauseOnHover:true,
+        draggable:true
+        });
+      }
+    else{
+      setCurrentStep(prev=>prev+1)
+    }
+  }
+  
+
   return (
     <div>
       <Navbar showButton={true} />
@@ -34,8 +55,8 @@ const Checkout = () => {
       </div>
       <div className="mx-14 mb-2 p-3 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
         <CheckoutProgressBar currentStep={currentStep} />
-        {currentStep===1 && <CheckoutCustomerInfo name={name} setName={setName} phone={phone} setPhone={setPhone}/>}
-        {currentStep===2 && <CheckoutDeliveryAddress addresses={addresses}/>}
+        {currentStep===1 && <CheckoutCustomerInfo userInfo={userInfo} prevStatus={prevStatus} setPrevStatus={setPrevStatus}/>}
+        {currentStep===2 && <CheckoutDeliveryAddress addresses={addresses} prevStatus={prevStatus} setPrevStatus={setPrevStatus}/>}
         <div className={`flex ${currentStep>1?"justify-between":"justify-end"} mx-4 mt-4 p-1`} >
         {currentStep>1 && <FaCircleArrowLeft
           size={22} 
@@ -43,14 +64,15 @@ const Checkout = () => {
           className="text-[#DB4444] cursor-pointer hover:scale-150" />}
         <FaCircleArrowRight 
           size={22} 
-          onClick={()=>setCurrentStep(prev=>prev+1)}
+          onClick={handleNextStep}
           className="text-[#DB4444] cursor-pointer hover:scale-150"/>
        
         </div>
       </div>
       <Footer />
+      <ToastContainer/>
     </div>
   );
-};
+}
 
 export default Checkout;

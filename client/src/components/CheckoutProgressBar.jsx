@@ -13,7 +13,7 @@ const CheckoutProgressBar = ({currentStep}) => {
                 <div  className={`w-8 h-8 flex items-center justify-center rounded-full ${
                     currentStep >= step ? 'bg-[#DB4444] text-white':'border border-[#DB4444] text-blue-500'
                 }`}>
-                {currentStep>step?(
+                {currentStep>step ?(
                     <FaCheckCircle className='bg-[#DB4444]'/>
                 ):currentStep===step?(
                     <div className="w-2 h-2 flex justify-center items-center font-semibold bg-[#DB4444] rounded-full">{currentStep}</div>
