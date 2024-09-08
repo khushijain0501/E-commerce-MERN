@@ -80,7 +80,7 @@ const OurProductsSlider = () => {
     useEffect(()=>{
         axios.get(`http://localhost:5000/products/allProdCaro`)
         .then(res => {
-            setProducts(res.data)
+            setProducts(res.data.products)
         })
         .catch(e=>{
             console.log("Error fetching products for all products carousal",error);

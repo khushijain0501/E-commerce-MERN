@@ -33,8 +33,8 @@ const CheckoutCustomerInfo = ({ userInfo, prevStatus, setPrevStatus }) => {
     <div>
       <div className="text-xl font-semibold pb-3">Customer Info</div>
       <div className="flex flex-col gap-4 mb-4 ">
-        <div className="flex flex-col sm:flex-row px-6 gap-4 sm:justify-between">
-          <div>
+        <div className="flex flex-col sm:flex-row px-6 gap-4 sm:justify-between md:justify-center md:gap-20 lg:gap-40">
+          <div className="w-full">
             <label className="p-1 pr-2 text-sm">First Name*</label>
             <br />
             <input
@@ -46,7 +46,7 @@ const CheckoutCustomerInfo = ({ userInfo, prevStatus, setPrevStatus }) => {
               className="border border-[1px]  text-sm p-1 w-[70%] sm:w-full"
             />
           </div>
-          <div>
+          <div className="w-full">
             <label className="p-1 pr-2 text-sm">Last Name*</label>
             <br />
             <input
@@ -59,8 +59,8 @@ const CheckoutCustomerInfo = ({ userInfo, prevStatus, setPrevStatus }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col px-6 sm:flex-row gap-4 sm:justify-between ">
-          <div>
+        <div className="flex flex-col px-6 sm:flex-row gap-4 sm:justify-between md:justify-center md:gap-20 lg:gap-40">
+          <div className="w-full">
             <label className="p-1 pr-2 text-sm">Phone no.*</label>
             <br />
             <input
@@ -72,7 +72,7 @@ const CheckoutCustomerInfo = ({ userInfo, prevStatus, setPrevStatus }) => {
               className="border border-[1px] text-sm p-1 w-[70%] sm:w-full"
             />
           </div>
-          <div>
+          <div className="w-full">
             <label className="p-1 pr-2 text-sm">Email*</label>
             <br />
             <input

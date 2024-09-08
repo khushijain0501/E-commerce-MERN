@@ -12,6 +12,7 @@ import {Provider} from "react-redux"
 import {store} from "./redux/store.js"
 import MyProfile from './pages/MyProfile.jsx'
 import Checkout from './pages/Checkout.jsx'
+import Page404 from './pages/Page404.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
  <Provider store={store}>
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Route path='/cart' element={<Cart/>}/>
   <Route path="/profile" element={<MyProfile/>}/>
   <Route path="/checkout" element={<Checkout/>}/>
+  <Route path='*' element={<Page404/>}/>
   </Routes>
   </BrowserRouter>
   </Provider>

@@ -20,6 +20,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, setCredentials } from './redux/slices/authSlice'
 import { addItem,clearCart } from './redux/slices/cartSlice'
+// import 'instantsearch.css/themes/satellite.css';
+
+
 
 function App() {
   const navigate=useNavigate();
@@ -54,7 +57,7 @@ function App() {
         //navigate("/login")
       }
       return status
-        ? toast(`Hello ${user}`, {
+        ? toast(`Hello ${user.name}`, {
             position: "top-right",
           })
         : (removeCookie("token"))

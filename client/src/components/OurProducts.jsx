@@ -17,7 +17,7 @@ const OurProducts = () => {
       </div>
       <OurProductsSlider/>
       <div className='flex justify-center mt-10'>
-        <Link to="/allProducts" state={{caller:"allProd"}}>
+        <Link to="/allProducts" state={{caller:"allProdCaro"}}>
     <button className='bg-[#DB4444] p-2 text-white rounded-md px-8'>
         View All Products
     </button>

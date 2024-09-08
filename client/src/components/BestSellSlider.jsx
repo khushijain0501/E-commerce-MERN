@@ -76,7 +76,7 @@ const BestSellSlider = () => {
     useEffect(()=>{
         axios.get(`http://localhost:5000/products/bestSellCaro`)
         .then(res => {
-            setProducts(res.data)
+            setProducts(res.data.products)
         })
         .catch(e=>{
             console.log("Error fetching products for all products carousal",error);

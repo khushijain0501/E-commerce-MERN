@@ -1,0 +1,66 @@
+const mongoose = require("mongoose");
+
+const orderSchema=mongoose.Schema({
+    shippingInfo:{
+        firstName:{
+            type:String,
+            required:true
+        },
+        lastName:{
+            type:String,
+            required:true
+        },
+        mobile:{
+            type:String,
+            required:true
+        },
+        email:{
+            type:String,
+            required:true
+        },
+        address:{
+            type:String,
+            required:true
+        },
+        city:{
+            type:String,
+            required:true
+        },
+        state:{
+            type:String,
+            required:true
+        },
+    },
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"users"
+    },
+    orderItems:[
+        {
+            productId:{
+                type:mongoose.Schema.Types.ObjectId,
+                required:true,
+                ref:"products"
+            },
+            title:{
+                type:String,
+                required:true
+            },
+            quantity:{
+                type:Number,
+                required:true
+            },
+            thumbnail:{
+                type:String,
+                required:true
+            },
+            price:{
+                type:Number,
+                required:true
+            },
+
+        }
+    ],
+    
+})

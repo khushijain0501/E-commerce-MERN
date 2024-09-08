@@ -23,7 +23,7 @@ const SaleProducts = () => {
     },[])
     useEffect(()=>{
         axios.get("http://localhost:5000/products/saleProdCaro")
-        .then((res)=>{setData(res.data)})
+        .then((res)=>{setData(res.data.products)})
         .catch(e=>{
             console.log("Error fetching products for all products carousal",error);
              })

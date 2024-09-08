@@ -14,14 +14,14 @@ const MyProfile = () => {
   const [edit,setEdit]=useState(false);
   const [profileImg, setProfileImg] = useState("");
   const [upload, setUpload] = useState(false);
-  const [firstName, setFirstName] = useState(userInfo.user.firstName);
-  const [lastName, setLastName] = useState(userInfo.user.lastName);
-  const [email, setEmail] = useState(userInfo.user.email);
-  const [phone, setPhone] = useState(userInfo.user.mobile);
-  const [address, setAddress] = useState(userInfo.user.address[0].address);
-  const [city, setCity] = useState(userInfo.user.address[0].city);
-  const [state, setState] = useState(userInfo.user.address[0].state);
-  const [addresses,setAddresses]=useState(userInfo.user.address)
+  const [firstName, setFirstName] = useState(userInfo.user.firstName?userInfo.user.firstName:"");
+  const [lastName, setLastName] = useState(userInfo.user.lastName?userInfo.user.lastName:"");
+  const [email, setEmail] = useState(userInfo.user.email?userInfo.user.email:"");
+  const [phone, setPhone] = useState(userInfo.user.mobile?userInfo.user.mobile:"");
+  const [address, setAddress] = useState(userInfo.user.address.length>0?userInfo.user.address[0].address:"");
+  const [city, setCity] = useState(userInfo.user.address.length>0?userInfo.user.address[0].city:"");
+  const [state, setState] = useState(userInfo.user.address.length>0?userInfo.user.address[0].state:"");
+  const [addresses,setAddresses]=useState(userInfo.user.address?userInfo.user.address:"")
   const dispatch = useDispatch();
   const navigate=useNavigate();
   console.log(edit)

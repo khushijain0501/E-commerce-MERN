@@ -7,7 +7,8 @@ const CheckoutProgressBar = ({currentStep}) => {
     console.log(currentStep)
 
   return (
-    <div className="flex justify-between items-center w-full py-4 px-10">
+    <div className='flex justify-center'>
+    <div className="flex justify-between items-center w-full py-4 px-10 max-w-[900px]">
         {steps.map((step,index)=>{
             return <React.Fragment key={index}>
                 <div  className={`w-8 h-8 flex items-center justify-center rounded-full ${
@@ -28,6 +29,7 @@ const CheckoutProgressBar = ({currentStep}) => {
           )}
             </React.Fragment>
         })}
+    </div>
     </div>
   )
 }

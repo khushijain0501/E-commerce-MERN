@@ -1,6 +1,5 @@
 import {React,useEffect,useState,useMemo} from 'react'
 import { IoMdHeartEmpty } from "react-icons/io";
-import { IoIosSearch } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
@@ -10,12 +9,15 @@ import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import { addItem,setCart,clearCart } from "../redux/slices/cartSlice";
+import axios from 'axios';
+import SearchComponent from './SearchComponent';
 
 
 const Navbar =({showButton,loggedIn,name,logout}) => {
   const [showDropdown, setShowDropdown] =useState(false)
   const [showMenu,setShowMenu]=useState(false);
   const dispatch=useDispatch();
+  
   
 
   const handleMouseEnter = () => {
@@ -24,6 +26,8 @@ const Navbar =({showButton,loggedIn,name,logout}) => {
   const handleMouseLeave = () => {
     setShowDropdown(false);
   };
+
+
   // const items=useSelector((state)=>state)
 
   const {cartItems}=useSelector(state=>state.cart)
@@ -55,14 +59,7 @@ const Navbar =({showButton,loggedIn,name,logout}) => {
         </ul>
       
       <div className="flex items-center gap-3 md:gap-5">
-        <label className='relative border-[1px]'>
-        <input 
-        type="text" 
-        placeholder="What are you looking for?"
-        className='p-2 text-xs sm:text-sm'/>
-        <IoIosSearch size={20} className='absolute right-[7px] top-[5px] sm:top-[8px] cursor-pointer'/>
-        </label>
-        
+        <SearchComponent/>
         <IoMdHeartEmpty size={20} className='cursor-pointer'/>
         <Link to="/cart">
         <div className='relative'>

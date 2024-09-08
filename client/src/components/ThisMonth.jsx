@@ -1,5 +1,6 @@
 import React from 'react'
 import BestSellSlider from './BestSellSlider'
+import { Link } from 'react-router-dom'
 
 const ThisMonth = () => {
   return (
@@ -13,9 +14,11 @@ const ThisMonth = () => {
       </div>
       <div className='flex justify-between items-center overflow-hidden'>
       <div className="text-xl font-bold ml-4  overflow-hidden">Best Selling Products</div>
+      <Link to="/allProducts" state={{caller:"bestSellCaro"}}>
       <button className='bg-[#DB4444] p-2 text-white rounded-md px-8 mr-4 text-sm'>
         View All 
     </button>
+    </Link>
       </div>
       <BestSellSlider/>
     </div>

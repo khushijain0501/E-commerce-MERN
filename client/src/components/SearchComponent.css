@@ -1,0 +1,30 @@
+.ais-SearchBox-input {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: 1px solid #d1d5db; /* Gray border */
+    border-radius: 0.375rem; /* Rounded corners */
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  /* .ais-SearchBox-input:focus {
+    border-color: #3b82f6; 
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  } */
+  
+  .ais-SearchBox-reset {
+    display: none; /* Hiding reset button */
+  }
+  
+  .ais-SearchBox-submit {
+    position: absolute;
+    top: 12px;
+    right: 0.5rem;
+  }
+  
+  .ais-searchOuter{
+    position: relative;
+  }
