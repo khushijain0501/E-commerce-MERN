@@ -66,34 +66,35 @@ exports.fetchCarousalProducts= async(req,res)=>{
         const page=parseInt(req.query.page)||1;
         const limit=parseInt(req.query.limit)||10;
         const skip=(page-1)*limit;
+        const {minPrice,maxPrice,sortBy}=req.query;
+        const filterConditions={}
 
         let products=[];
         let totalCount=0;
         let totalPages=0;
-        if(tag=="bestSellCaro"){
-        products=await ProductModel.find({rating:{$gt:4}})
+
+        if(minPrice)
+            filterConditions.price={$gte:parseFloat(minPrice)};
+        if(maxPrice)
+            filterConditions.price = { ...filterConditions.price, $lte: parseFloat(maxPrice) };
+
+        if (tag === "bestSellCaro") filterConditions.rating = { $gt: 4 };
+        if (tag === "saleProdCaro") filterConditions.discountPercentage = { $gt: 15 };
+        if (tag === "allProdCaro") filterConditions.discountPercentage = { $lt: 1 };
+
+        let sortCondition = {};
+        if (sortBy === "priceAsc") sortCondition.price = 1;
+        if (sortBy === "priceDesc") sortCondition.price = -1;
+        if (sortBy === "ratingDesc") sortCondition.rating = -1;
+
+        products = await ProductModel.find(filterConditions)
             .skip(skip)
-            .limit(limit);
-            totalCount=await ProductModel.find({rating:{$gt:4}}).countDocuments();
-            totalPages=Math.ceil(totalCount/limit);
-        }
-        if(tag=="saleProdCaro"){
-            products=await ProductModel.find({discountPercentage:{$gt:15}})
-            .skip(skip)
-            .limit(limit);
-            totalCount=await ProductModel.find({discountPercentage:{$gt:15}}).countDocuments();
-            totalPages=Math.ceil(totalCount/limit);
-        }
-        if(tag=="allProdCaro"){
-            products=await ProductModel.find()
-            .skip(skip)
-            .limit(limit);
-            totalCount=await ProductModel.find().countDocuments();
-            totalPages=Math.ceil(totalCount/limit);
-        }
+            .limit(limit)
+            .sort(sortCondition);
+        
         //return products;
-        // const totalCount=await ProductModel;
-        // const totalPages=Math.ceil(totalCount/limit);
+        totalCount=await ProductModel.countDocuments(filterConditions);
+        totalPages=Math.ceil(totalCount/limit);
         res.status(200).json({products,currentPage:page,totalPages,totalProducts:totalCount});
     }
     catch(e){
@@ -116,13 +117,56 @@ exports.getProductById=async (req,res)=>{
     }
 };
 exports.getProductByCategory=async (req,res)=>{
-    console.log(req.params.tag)
-    try{
-        const products=await ProductModel.find({category:req.params.tag})
-        console.log(products.length)
-        return res.status(200).json(products);
-    }
-    catch(e){
-        res.status(500).send('Server error');
-    }
+    // console.log(req.params.tag)
+    // try{
+    //     const category=req.params.tag
+    //     const products=await ProductModel.find({category:req.params.tag})
+    //     console.log(products.length)
+    //     return res.status(200).json(products);
+    // }
+//     catch(e){
+//         res.status(500).send('Server error');
+//     }
+// }
+try{
+    // console.log(req.params.tag)
+    const tag=req.params.tag;
+    const page=parseInt(req.query.page)||1;
+    const limit=parseInt(req.query.limit)||10;
+    const skip=(page-1)*limit;
+    const {minPrice,maxPrice,sortBy}=req.query;
+    const filterConditions={}
+
+    let products=[];
+    let totalCount=0;
+    let totalPages=0;
+
+    if(minPrice)
+        filterConditions.price={$gte:parseFloat(minPrice)};
+    if(maxPrice)
+        filterConditions.price = { ...filterConditions.price, $lte: parseFloat(maxPrice) };
+
+    // if (tag === "bestSellCaro") filterConditions.rating = { $gt: 4 };
+    // if (tag === "saleProdCaro") filterConditions.discountPercentage = { $gt: 15 };
+    // if (tag === "allProdCaro") filterConditions.discountPercentage = { $lt: 1 };
+    filterConditions.category=req.params.tag
+
+    let sortCondition = {};
+    if (sortBy === "priceAsc") sortCondition.price = 1;
+    if (sortBy === "priceDesc") sortCondition.price = -1;
+    if (sortBy === "ratingDesc") sortCondition.rating = -1;
+
+    products = await ProductModel.find(filterConditions)
+        .skip(skip)
+        .limit(limit)
+        .sort(sortCondition);
+    
+    //return products;
+    totalCount=await ProductModel.countDocuments(filterConditions);
+    totalPages=Math.ceil(totalCount/limit);
+    res.status(200).json({products,currentPage:page,totalPages,totalProducts:totalCount});
+}
+catch(e){
+    res.status(500).send('Server error');
+}
 }
