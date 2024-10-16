@@ -4,12 +4,13 @@ const cookieParser=require("cookie-parser");
 const authRoute=require("./Routes/AuthRoute");
 const productRoute=require("./Routes/ProductRoute")
 const dbConnect=require("./db/db.js")
+const BASE_URL=process.env.BASE_URL
 
 const app = express();
 const port = 5000;
 
 app.use(cors({
-    origin:["http://localhost:5173"],
+    origin:[`${BASE_URL}`],
     methods:["GET","POST","PUT","DELETE"],
     credentials:true
 }))
